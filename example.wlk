@@ -1,6 +1,6 @@
 object paquete {
     var property estaPago = true
-    var property destino = puenteDeBrooklyn
+    var property destino = null
 
     method puedeSerEntregado(mensajero) {
         return (estaPago && destino.puedePasar(mensajero))
@@ -29,7 +29,7 @@ object puenteDeBrooklyn {
 object jeanGray {
     var property peso = 65
 
-    method puedoHacerLlamdas() {
+    method puedoHacerLlamadas() {
         return true 
     }
 }
@@ -45,11 +45,12 @@ object neo {
 }
 
 object saraConnor {
-    var property peso = vehiculo
-    var property vehiculo = moto
+    var property peso = 0
+    var property vehiculo = null
 
-    method vehiculoQueUsa() {
-      return vehiculo 
+    method peso() {
+        return peso + vehiculo.peso()
+      
     }
 
     method puedoHacerLlamadas() {
@@ -64,13 +65,10 @@ object moto {
 }
 
 object camion {
-    var property peso = 500
-    var property acoplado = 1
-
-    method tengoAcoplados() {
-        return if (acoplado > 0) 
-                {peso = peso + acoplado * 500} 
-                else { peso = peso + 0} 
+    var property acoplado = 0
+    
+    method peso() {
+        return 500 + acoplado * 500
     }
 }
 

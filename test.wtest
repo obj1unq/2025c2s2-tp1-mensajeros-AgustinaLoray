@@ -1,0 +1,40 @@
+import example.*
+describe "Test mensajeros 1" {
+  test "El paquete de George que no está pago no puede ser llevado por Neo a la matrix" {
+    paquete.estaPago(false) 
+    paquete.destino(laMatrix) 
+    assert.notThat(paquete.puedeSerEntregado(neo))
+  }
+}
+
+describe "Test mensajeros 2" {
+  test "El paquete de George que sí está pago puede ser llevado por Jean a la matrix" {
+    paquete.estaPago(true)
+    paquete.destino(laMatrix) 
+    assert.that(paquete.puedeSerEntregado(jeanGray))
+  }
+}
+
+describe "Test mensajeros 3" {
+  test "El paquete de George que sí está pago no puede ser llevado por Sara (que pesa 70kg)
+        a Brooklyn si es que utiliza un camión con un acoplado" {
+    paquete.estaPago(true)
+    paquete.destino(puenteDeBrooklyn) 
+    saraConnor.peso(70)
+    saraConnor.vehiculo(camion)
+    camion.acoplado(1)
+    assert.notThat(paquete.puedeSerEntregado(saraConnor))
+  }
+}
+
+describe "Test mensajeros 4" {
+  test "La entrega anterior puede hacerse si Sara usa una moto" {
+    paquete.estaPago(true)
+    paquete.destino(puenteDeBrooklyn) 
+    saraConnor.peso(70)
+    saraConnor.vehiculo(moto)
+    assert.that(paquete.puedeSerEntregado(saraConnor))
+    
+  }
+}
+
